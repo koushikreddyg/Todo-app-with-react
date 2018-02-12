@@ -4,7 +4,7 @@ import List from '../components/list';
 
  class Main extends Component {
    state ={
-      term: 'SUNIL',
+      term: '',
       items: []
     }
   
