@@ -2,13 +2,16 @@ import React from 'react';
 import Form from '../components/Form';
 import Home from './Home';
 class Edit extends React.Component{
+  constructor(props){
+    super(props);
+    
+  }
   render(){
   return(
     <div>
 
-    this is Edit page for id {this.props.match.params.id} 
-    <Form Submit={this.Submit}/>
-    <button>delete</button>
+    <Form option={this.props.match.params.id}/>
+    <button >delete</button>
     </div>
   );
 }

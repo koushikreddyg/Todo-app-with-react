@@ -1,16 +1,31 @@
 import React from 'react';
 class Forms extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            option:props.option?props.option: ''
+        }
+    }
+    change=(e)=>{
+        e.preventDefault();
+        const option= e.target.value;
+        this.setState(()=>({
+            option
+        }))
+    }
     submit=(e)=>{
         e.preventDefault();
-        const option=e.target.elements.search.value;
-        this.props.Submit(option)
+        this.props.Submit(this.state.option)
+        this.setState(()=>({
+            option:''
+        }))
     }
 
     render(){
         return(
             <div>
                 <form onSubmit={this.submit}>
-                <input name="search"/>
+                <input value={this.state.option} name='input' onChange={this.change}/>
                 <button>Submit</button>
                 </form>
             </div>
