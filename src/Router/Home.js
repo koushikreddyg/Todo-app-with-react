@@ -8,7 +8,8 @@ import Extras from '../components/Extras';
     super(props);
     this.state={
       options:[],
-      optionList:[]
+      optionList:[],
+      option:''
     }
   }
   editItem
@@ -27,7 +28,6 @@ Submit=(value)=>{
       error: undefined
     }))
   this.setState((prevState)=>({
-    
     options:prevState.options.concat(realvalue)
   }))
   
@@ -43,6 +43,24 @@ Remove=(e)=>{
   
  
 }
+componentDidMount(){
+  try{
+  const json=localStorage.getItem('options');
+  const options=JSON.parse(json);
+  if(options){
+  this.setState((prevState)=>({options}));
+  }
+}
+catch(e){
+
+}
+}
+componentDidUpdate(prevProps, prevState){
+  if(prevState.options.length!==this.state.options.length){
+      const json1=JSON.stringify(this.state.options);
+      localStorage.setItem('options',json1);
+  }
+}
 
 render(){
   console.log(this.props.input)
@@ -51,7 +69,7 @@ render(){
     {this.state.error&&<p>{this.state.error}</p>}
     <Form Submit={this.Submit}/>
     <Display options={this.state.options} Remove={this.Remove} />
-   <Extras optionsl={this.state.options}/>
+    
     </div>
   )
 }

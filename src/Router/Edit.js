@@ -20,9 +20,8 @@ class Edit extends React.Component{
     <div>
 
     <Form option={this.props.match.params.id} Submit={this.Submit}  />
-    <Extras option={Options(this.state.option)} />
+    <Extras option={this.state.option}/>
 
-    <button >delete</button>
     
     </div>
   );
