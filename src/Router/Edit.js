@@ -6,18 +6,21 @@ class Edit extends React.Component{
   state={
     option:''
   }
-  submit=(e)=>{
+  Submit=(e)=>{
     this.setState((prevState)=>({
       option:e
+      
     }))
-  
+    
   }
+  
   render(){
+    console.log(this.state.option)
   return(
     <div>
 
-    <Form option={this.props.match.params.id} Submit={this.submit}  />
-    <Extras option={this.state.option}  />
+    <Form option={this.props.match.params.id} Submit={this.Submit}  />
+    <Extras option={Options(this.state.option)} />
 
     <button >delete</button>
     
