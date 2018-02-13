@@ -1,30 +1,32 @@
 import React from 'react';
 import Form from '../components/Form';
-import Extras from '../components/Extras';
+import Extras from '../components/Extra';
 import Home from './Home';
-class Edit extends React.Component{
-  state={
-    option:''
-  }
-  Submit=(e)=>{
-    this.setState((prevState)=>({
-      option:e
-      
-    }))
-    
-  }
-  
-  render(){
-    console.log(this.state.option)
-  return(
-    <div>
 
-    <Form option={this.props.match.params.id} Submit={this.Submit}  />
-    <Extras option={this.state.option}/>
+class Edit extends React.Component {
 
-    
-    </div>
-  );
-}
+  constructor(props){
+    super(props)
+    this.state={
+      task: Extras.findById(this.props.match.params.id)
+    }
+  }
+
+  Submit = (e) => {
+    var item={
+      id:this.state.task.id,
+      task:e
+    };
+    this.setState((prevState) => ({task: Extras.editData(item)}))   
+  }
+
+  render() {
+    console.log(this.state.task)
+    return (
+      <div>
+        <Form option={this.state.task.task} Submit={this.Submit} />
+      </div>
+    );
+  }
 }
 export default Edit;

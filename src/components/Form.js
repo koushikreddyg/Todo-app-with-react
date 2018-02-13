@@ -19,7 +19,6 @@ class Forms extends React.Component{
         this.setState(()=>({
             option:''
         }))
-        
     }
 
     render(){
