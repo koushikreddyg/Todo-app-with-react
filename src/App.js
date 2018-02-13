@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Demoform from './demoform';
-
+import {  Icon, Input, Button } from 'antd';
+import './App.css';
 class App extends Component{
   constructor(props) {
     super(props);
@@ -47,7 +48,7 @@ this.setState(state);
       display:this.state.shown? "none":"block"
   }
     return (
-      <div>
+      <div className="todo">
         
       <div>
           <Demoform addlist={this.todolist}></Demoform>
@@ -61,13 +62,14 @@ this.setState(state);
             {Object.keys(i).map((k, ind1) => {
               return (
                 <span key={'send key' + ind1}>
-                  {k}:<input type="text" style={hide} onChange={(e)=>this.changevalue(e,ind,k)} value={i[k]}/>
+                  {k}:<Input  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} type="text" style={hide} onChange={(e)=>this.changevalue(e,ind,k)} value={i[k]}/>
                   <p style={show}>{i[k]}</p> <br /></span>
               )
             })}
             
-            <button onClick={() => { this.edit() }}>edit</button><br />
-            <button onClick={() => { this.dele(ind) }}>Delete</button><br />
+            <Button className="login-form-button" onClick={() => { this.edit() }}>edit</Button>
+            
+            <Button className="login-form-button" onClick={() => { this.dele(ind) }}>Delete</Button><br />
           </span>
         )
       })

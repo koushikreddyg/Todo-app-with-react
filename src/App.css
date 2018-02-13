@@ -1,28 +1,50 @@
-.App {
+
+.login-form {
+  padding: 5em;
   text-align: center;
+  background-color: #0099ff;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.login-form-button  {
+  background: #0099ff;
+  background-image: -webkit-linear-gradient(top, #0099ff, #000000);
+  background-image: -moz-linear-gradient(top, #0099ff, #000000);
+  background-image: -ms-linear-gradient(top, #0099ff, #000000);
+  background-image: -o-linear-gradient(top, #0099ff, #000000);
+  background-image: linear-gradient(to bottom, #0099ff, #000000);
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 9px 20px 10px 20px;
+  text-decoration: none;
+  margin-left: 5em;
+  margin-top: 2em;
+}
+.login-form-button :hover {
+  background: #ff0000;
+  background-image: -webkit-linear-gradient(top, #ff0000, #000000);
+  background-image: -moz-linear-gradient(top, #ff0000, #000000);
+  background-image: -ms-linear-gradient(top, #ff0000, #000000);
+  background-image: -o-linear-gradient(top, #ff0000, #000000);
+  background-image: linear-gradient(to bottom, #ff0000, #000000);
+  text-decoration: none; 
+}
+.todo{
+  
+text-align: center;
+border-top: 5em;
+}
+.todo1{
+  text-align: center; 
+}
+.centre{
+  margin-left: 30em; 
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
 
-.App-title {
-  font-size: 1.5em;
-}
 
-.App-intro {
-  font-size: large;
-}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
