@@ -1,14 +1,17 @@
 import React from 'react';
 import Form from '../components/Form';
 import Display from '../components/Display';
+import Edit from './Edit';
+import Extras from '../components/Extras';
  class Home extends React.Component{
   constructor(props){
     super(props);
     this.state={
       options:[],
-      error:false
+      optionList:[]
     }
   }
+  editItem
 Submit=(value)=>{
   const realvalue=value.trim();
   if (realvalue.length==0){
@@ -29,17 +32,26 @@ Submit=(value)=>{
   }))
   
 }
+
+}
+Remove=(e)=>{
+  this.setState(()=>({
+    options: this.state.options.filter((item)=>{
+      return item!==e
+    })
+  }))
+  
+ 
 }
 
-
 render(){
-  
+  console.log(this.props.input)
   return(
     <div>
     {this.state.error&&<p>{this.state.error}</p>}
     <Form Submit={this.Submit}/>
-    <Display options={this.state.options} />
- 
+    <Display options={this.state.options} Remove={this.Remove} />
+   <Extras optionsl={this.state.options}/>
     </div>
   )
 }

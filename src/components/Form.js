@@ -3,7 +3,7 @@ class Forms extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            option:props.option?props.option: ''
+            option:this.props.option?this.props.option: ''
         }
     }
     change=(e)=>{
@@ -19,6 +19,7 @@ class Forms extends React.Component{
         this.setState(()=>({
             option:''
         }))
+        
     }
 
     render(){
