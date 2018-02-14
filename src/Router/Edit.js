@@ -6,8 +6,9 @@ class Edit extends React.Component {
     super(props);
     this.state={
       editValue:Actions.findById(Number(this.props.match.params.id)),
-      id:Number(this.props.match.params.id)
-      
+      id:Number(this.props.match.params.id),
+      formDisabled:false,
+      error:''
     }
   }
   editValueChange=(e)=>{
@@ -21,23 +22,38 @@ class Edit extends React.Component {
     e.preventDefault();
     const editValue=this.state.editValue;
     const id=this.state.id
-    Actions.editTask(id,{task:editValue});
+    if (editValue.length===0){
+      this.setState(()=>({
+        error:'please enter some value'
+      }))
+    }else{
+      this.setState(()=>({
+        error:undefined
+      }))
+      Actions.editTask(id,{task:editValue});
     this.props.history.push('/')
+    }
+    
   }
-goHome=()=>{
-  return this.props.history.push('/')
+
+componentWillMount(){
+  if (this.state.editValue.length===0){
+      this.setState(()=>({
+        formDisabled:true
+      }))
+  }
 }
   render() {
     console.log();
     return (
       <div>
-      {this.state.editValue&&<form onSubmit={this.submitEditValue}>
+      {this.state.error&&<p>{this.state.error}</p>}
+      {this.state.formDisabled===true?<p>It seems like you are in wrong place</p>:
+      <form onSubmit={this.submitEditValue}>
       <input value={this.state.editValue} onChange={this.editValueChange}/>
       <button type='submit'>Edit me</button>
-      </form>}
-      {this.state.editValue===false&& <div>It seems like you are in wrong palce
-      <button onClick={this.goHome}>Home</button></div>}
-      
+      </form>
+      }
      
       </div>
     );
