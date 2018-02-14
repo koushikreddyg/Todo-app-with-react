@@ -1,8 +1,13 @@
-let array=JSON.parse(localStorage.getItem('Tasks Array'));
 
+
+    //let array=JSON.parse(localStorage.getItem('Tasks Array'));
+let array=[];
 
 class Actions {
-     
+     static store=(store)=>{
+         array=store;
+         return array
+     }
 static Add=(id,task)=>{
     let item={
         id:id,

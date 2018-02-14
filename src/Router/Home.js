@@ -25,7 +25,12 @@ const task=e.target.value;
   }))
 
 }
-
+componentDidMount(){
+  const json=JSON.parse(localStorage.getItem('Tasks Array'))
+  if(json){
+    Actions.store(json);
+  }
+}
 
 FormSubmit=(e)=>{
   e.preventDefault();

@@ -8,12 +8,13 @@ class DisplayTasks extends React.Component{
     render(){
         return (
             <div>
-            {this.props.Tasks.map((Task)=>
+            {this.props.Tasks.length>0&&(this.props.Tasks.map((Task)=>
             (<div key={Task.id}>
                 <h4><Checkbox onChange={this.onChange}><Link to={`/edit/${Task.id}`} >{Task.task} </Link></Checkbox>
                 </h4>
             </div>)
-                )}
+                ))}
+            
             </div>
         )
     }
