@@ -1,10 +1,9 @@
 import React from 'react';
 import Actions from '../Library/Actions';
-import { Row, Col } from 'antd';
+import { Col } from 'antd';
 import 'antd/dist/antd.css';
 import { Input } from 'antd';
 import { Button } from 'antd';
-import { Card } from 'antd';
 const Search = Input.Search
 
 class Edit extends React.Component {
@@ -29,7 +28,6 @@ class Edit extends React.Component {
     const editValue=this.state.editValue;
     const id=this.state.id
     let error=Actions.errorCheck(editValue);
-    console.log('the error value is ',error)
     if (editValue.length===0 || error.length>0){
       this.setState(()=>({
         error:'please enter Task or please enter valid task'
@@ -43,14 +41,14 @@ class Edit extends React.Component {
     }
     
   }
-
-componentWillMount(){
-  if (this.state.editValue.length===0){
-      this.setState(()=>({
-        formDisabled:true
-      }))
+  componentWillMount(){
+    if (this.state.editValue.length===0){
+        this.setState(()=>({
+          formDisabled:true
+        }))
+    }
   }
-}
+
   render() {
     console.log();
     return (

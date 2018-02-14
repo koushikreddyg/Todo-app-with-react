@@ -6,13 +6,16 @@ import 'antd/dist/antd.css';
 import { Input } from 'antd';
 import { Button } from 'antd';
 import { Card } from 'antd';
+
 const Search = Input.Search
 
 
 class Home extends React.Component {
 constructor(props){
   super(props);
-  this.state={task:'',Tasks:Actions.getAllData(), error:''}
+  this.state={task:'',
+  Tasks:Actions.getAllData(), 
+  error:''}
 }
 inputChange=(e)=>{
 e.preventDefault();
@@ -22,6 +25,8 @@ const task=e.target.value;
   }))
 
 }
+
+
 FormSubmit=(e)=>{
   e.preventDefault();
  
@@ -53,6 +58,7 @@ FormSubmit=(e)=>{
     }
 }
 
+
 removeTask=(id)=>{
   this.setState((prevState)=>({
     Tasks:Actions.RemoveItem(id)
@@ -82,7 +88,7 @@ removeTask=(id)=>{
        <Col offset={7}>
        <div style={{ background: '#ECECEC', padding: '30px',width: 400,textAlign:'left' }}>
     <Card title="Task List" bordered={true} style={{ width: 330 }}>
-    <DisplayTasks Tasks={this.state.Tasks} removeTask={this.removeTask}/>
+    <DisplayTasks Tasks={this.state.Tasks} bordered={true} removeTask={this.removeTask}/>
     {this.state.error&&<p>{this.state.error}</p>}
     </Card>
   </div>
