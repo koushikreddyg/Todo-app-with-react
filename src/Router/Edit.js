@@ -1,30 +1,44 @@
 import React from 'react';
-import Form from '../components/Form';
-import Extras from '../components/Extra';
-import Home from './Home';
+import Actions from '../Library/Actions';
 
 class Edit extends React.Component {
-
   constructor(props){
-    super(props)
+    super(props);
     this.state={
-      task: Extras.findById(this.props.match.params.id)
+      editValue:Actions.findById(Number(this.props.match.params.id)),
+      id:Number(this.props.match.params.id)
+      
     }
   }
-
-  Submit = (e) => {
-    var item={
-      id:this.state.task.id,
-      task:e
-    };
-    this.setState((prevState) => ({task: Extras.editData(item)}))   
+  editValueChange=(e)=>{
+    e.preventDefault();
+    const editValue=e.target.value;
+    this.setState(()=>({
+      editValue
+    }))
   }
-
+  submitEditValue=(e)=>{
+    e.preventDefault();
+    const editValue=this.state.editValue;
+    const id=this.state.id
+    Actions.editTask(id,{task:editValue});
+    this.props.history.push('/')
+  }
+goHome=()=>{
+  return this.props.history.push('/')
+}
   render() {
-    console.log(this.state.task)
+    console.log();
     return (
       <div>
-        <Form option={this.state.task.task} Submit={this.Submit} />
+      {this.state.editValue&&<form onSubmit={this.submitEditValue}>
+      <input value={this.state.editValue} onChange={this.editValueChange}/>
+      <button type='submit'>Edit me</button>
+      </form>}
+      {this.state.editValue===false&& <div>It seems like you are in wrong palce
+      <button onClick={this.goHome}>Home</button></div>}
+      
+     
       </div>
     );
   }

@@ -1,76 +1,69 @@
 import React from 'react';
-import Form from '../components/Form';
-import Display from '../components/Display';
-import Edit from './Edit';
-import Extras from '../components/Extra';
+import Actions from '../Library/Actions';
+import DisplayTasks from '../components/DisplayTasks';
+import uuid from 'uuid';
 class Home extends React.Component {
+constructor(props){
+  super(props);
+  this.state={task:'',Tasks:Actions.getAllData(), error:''}
+}
+inputChange=(e)=>{
+e.preventDefault();
+const task=e.target.value;
+  this.setState(()=>({
+      task: task
+  }))
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      options: Extras.getAllData(),
-      error: undefined
-    }
-  }
-
-  searchTaskDups = (value) => {
-    return this.state.options.find(obj => obj.task === value);
-  }
-
-  Submit = (value) => {
-    const realvalue = value.trim();
-    if (realvalue.length == 0) {
-      this.setState((prevState) => ({
-        error: 'please enter some value'
-      }))
-    } else if (this.searchTaskDups(realvalue)) {
-      this.setState((prevState) => ({
-        error: 'option is present'
-      }))
-    } else {
-      let taskObj = {
-        id: Date.now(),
-        task: realvalue
-      }
-  
-      this.setState((prevState) => ({
-        error: undefined,
-        options: [...prevState.options, Extras.addData(taskObj)]
+}
+FormSubmit=(e)=>{
+  e.preventDefault();
+ 
+    const id= Date.now();
+    const task= this.state.task.trim();
+    let error=Actions.errorCheck(task);
+    if (task.length===0){
+      this.setState(()=>({
+        error:'Please enter some value'
       }))
     }
-
-  }
-  Remove = (id) => {
-    this.setState(() => ({
-      options:Extras.deleteData(id)
+    else if(error.length>0){
+      this.setState(()=>({
+        error:'this task is already present please enter another task'
+      }))
+    }
+    
+    else if(error.length===0){
+      this.setState(()=>({
+        task:''
+      }))
+      this.setState(()=>({
+        error:undefined
+      }))
+      this.setState((prevState)=>({
+        Tasks: Actions.Add(id,task)
     }))
-  }
-  // componentDidMount() {
-  //   try {
-  //     const json = localStorage.getItem('options');
-  //     const options = JSON.parse(json);
-  //     if (options) {
-  //       this.setState((prevState) => ({ options }));
-  //     }
-  //   }
-  //   catch (e) {
+   
+    }
+}
 
-  //   }
-  // }
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.options.length !== this.state.options.length) {
-  //     const json1 = JSON.stringify(this.state.options);
-  //     localStorage.setItem('options', json1);
-  //   }
-  // }
-
+removeTask=(id)=>{
+  this.setState((prevState)=>({
+    Tasks:Actions.RemoveItem(id)
+  }))
+}
+  
   render() {
-    console.log(this.props.input)
+   
     return (
       <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <Form Submit={this.Submit} />
-        <Display options={this.state.options} Remove={this.Remove} />
+      {this.state.error&&<p>{this.state.error}</p>}
+        <form onSubmit={this.FormSubmit}>
+       <input value={this.state.task} placeholder='please enter the to do task' name= 'addInput'
+       onChange={this.inputChange}
+       />
+       <button>Submit</button>
+       </form>
+       <DisplayTasks Tasks={this.state.Tasks} removeTask={this.removeTask}/>
       </div>
     )
   }
