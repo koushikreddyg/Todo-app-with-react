@@ -1,5 +1,11 @@
 import React from 'react';
 import Actions from '../Library/Actions';
+import { Row, Col } from 'antd';
+import 'antd/dist/antd.css';
+import { Input } from 'antd';
+import { Button } from 'antd';
+import { Card } from 'antd';
+const Search = Input.Search
 
 class Edit extends React.Component {
   constructor(props){
@@ -49,13 +55,25 @@ componentWillMount(){
     console.log();
     return (
       <div>
-      {this.state.error&&<p>{this.state.error}</p>}
-      {this.state.formDisabled===true?<p>It seems like you are in wrong place</p>:
+     
+
+      
+        <Col  offset={7}>
+        {this.state.formDisabled===true?<h1>It seems like you are in wrong place</h1>:
       <form onSubmit={this.submitEditValue}>
-      <input value={this.state.editValue} onChange={this.editValueChange}/>
-      <button type='submit'>Edit me</button>
+
+      <Search value={this.state.editValue} 
+      style={{ width: 400 }}
+        placeholder='please enter the to do task' name= 'addInput' 
+      onChange={this.editValueChange}/>
+      <Button type='primary' onClick={this.submitEditValue}>Edit!</Button><br/>
+      <Button type='primary' span={20}onClick={(e)=>{Actions.RemoveItem(this.state.id);
+      this.props.history.push('/')}}>Remove Me!</Button>
+      {this.state.error&&<p>{this.state.error}</p>}
       </form>
-      }
+    }
+      </Col>
+     
      
       </div>
     );

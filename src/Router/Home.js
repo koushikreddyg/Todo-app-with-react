@@ -1,6 +1,14 @@
 import React from 'react';
 import Actions from '../Library/Actions';
 import DisplayTasks from '../components/DisplayTasks';
+import { Row, Col } from 'antd';
+import 'antd/dist/antd.css';
+import { Input } from 'antd';
+import { Button } from 'antd';
+import { Card } from 'antd';
+const Search = Input.Search
+
+
 class Home extends React.Component {
 constructor(props){
   super(props);
@@ -54,16 +62,38 @@ removeTask=(id)=>{
   render() {
    
     return (
+  
       <div>
-      {this.state.error&&<p>{this.state.error}</p>}
+    <Row>
+      
+      
         <form onSubmit={this.FormSubmit}>
-       <input value={this.state.task} placeholder='please enter the to do task' name= 'addInput'
+        <Col  offset={7}><Search value={this.state.task} style={{ width: 325 }}
+        placeholder='please enter the to do task' name= 'addInput' 
        onChange={this.inputChange}
        />
-       <button>Submit</button>
+       <Button type='primary' onClick={this.FormSubmit}>Submit</Button>
+       </Col>
+       
+       
        </form>
-       <DisplayTasks Tasks={this.state.Tasks} removeTask={this.removeTask}/>
+       </Row>
+       <Row>
+       <Col offset={7}>
+       <div style={{ background: '#ECECEC', padding: '30px',width: 400,textAlign:'left' }}>
+    <Card title="Task List" bordered={true} style={{ width: 330 }}>
+    <DisplayTasks Tasks={this.state.Tasks} removeTask={this.removeTask}/>
+    {this.state.error&&<p>{this.state.error}</p>}
+    </Card>
+  </div>
+       </Col>
+       </Row>
+       
+
+       
+      
       </div>
+    
     )
   }
 }
