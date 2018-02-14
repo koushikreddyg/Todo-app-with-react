@@ -1,7 +1,6 @@
 import React from 'react';
 import Actions from '../Library/Actions';
 import DisplayTasks from '../components/DisplayTasks';
-import uuid from 'uuid';
 class Home extends React.Component {
 constructor(props){
   super(props);

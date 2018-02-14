@@ -22,16 +22,18 @@ class Edit extends React.Component {
     e.preventDefault();
     const editValue=this.state.editValue;
     const id=this.state.id
-    if (editValue.length===0){
+    let error=Actions.errorCheck(editValue);
+    console.log('the error value is ',error)
+    if (editValue.length===0 || error.length>0){
       this.setState(()=>({
-        error:'please enter some value'
+        error:'please enter Task or please enter valid task'
       }))
-    }else{
+    }else if (error.length===0){
       this.setState(()=>({
         error:undefined
       }))
       Actions.editTask(id,{task:editValue});
-    this.props.history.push('/')
+      this.props.history.push('/')
     }
     
   }
