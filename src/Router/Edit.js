@@ -4,9 +4,14 @@ import { Col } from 'antd';
 import 'antd/dist/antd.css';
 import { Input } from 'antd';
 import { Button } from 'antd';
-const Search = Input.Search
+import store from '../store/Store/store';
+import editTask from '../store/Actions/editTask';
+import removeTask from '../store/Actions/RemoveTask';
+import {connect} from 'react-redux'
+const Search = Input.Search;
 
-class Edit extends React.Component {
+
+export class Edit extends React.Component {
   constructor(props){
     super(props);
     this.state={
@@ -37,6 +42,7 @@ class Edit extends React.Component {
         error:undefined
       }))
       Actions.editTask(id,{task:editValue});
+      store.dispatch(editTask(id,{task:editValue}));
       this.props.history.push('/')
     }
     
@@ -66,7 +72,10 @@ class Edit extends React.Component {
       onChange={this.editValueChange}/>
       <Button type='primary' onClick={this.submitEditValue}>Edit!</Button><br/>
       <Button type='primary' span={20}onClick={(e)=>{Actions.RemoveItem(this.state.id);
-      this.props.history.push('/')}}>Remove Me!</Button>
+      this.props.dispatch(removeTask(this.state.id))
+      this.props.history.push('/');
+        
+      }}>Remove Me!</Button>
       {this.state.error&&<p>{this.state.error}</p>}
       </form>
     }
@@ -77,4 +86,7 @@ class Edit extends React.Component {
     );
   }
 }
-export default Edit;
+const mapStateToProps=(state,props)=>({
+    editTask:state.Actions.find((item)=>(item.id===this.props.match.params.id))
+})
+export default connect(mapStateToProps)(Edit);

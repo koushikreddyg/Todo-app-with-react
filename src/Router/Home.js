@@ -1,20 +1,23 @@
 import React from 'react';
 import Actions from '../Library/Actions';
 import DisplayTasks from '../components/DisplayTasks';
+import {connect} from 'react-redux';
 import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 import { Input } from 'antd';
 import { Button } from 'antd';
 import { Card } from 'antd';
-
+import addTask from '../store/Actions/AddTask'; 
+import store from '../store/Store/store';
 const Search = Input.Search
 
 
-class Home extends React.Component {
+export class Home extends React.Component {
 constructor(props){
   super(props);
   this.state={task:'',
   Tasks:Actions.getAllData(), 
+  image:undefined,
   error:''}
 }
 inputChange=(e)=>{
@@ -56,6 +59,7 @@ FormSubmit=(e)=>{
       this.setState(()=>({
         error:undefined
       }))
+      store.dispatch(addTask({id:id,task:task}));
       this.setState((prevState)=>({
         Tasks: Actions.Add(id,task)
     }))
@@ -64,17 +68,14 @@ FormSubmit=(e)=>{
 }
 
 
-removeTask=(id)=>{
-  this.setState((prevState)=>({
-    Tasks:Actions.RemoveItem(id)
-  }))
-}
+
   
   render() {
    
     return (
   
       <div>
+      
     <Row>
       
       
@@ -93,15 +94,13 @@ removeTask=(id)=>{
        <Col offset={7}>
        <div style={{ background: '#ECECEC', padding: '30px',width: 400,textAlign:'left' }}>
     <Card title="Task List" bordered={true} style={{ width: 330 }}>
-    <DisplayTasks Tasks={this.state.Tasks} bordered={true} removeTask={this.removeTask}/>
+    <DisplayTasks Tasks={this.state.Tasks} bordered={true} />
     {this.state.error&&<p>{this.state.error}</p>}
     </Card>
   </div>
        </Col>
        </Row>
-       
 
-       
       
       </div>
     
@@ -110,4 +109,4 @@ removeTask=(id)=>{
 }
 
 
-export default Home;
+export default connect()(Home);
