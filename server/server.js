@@ -9,6 +9,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-app.listen(900, () => {
+app.listen(1900, () => {
   console.log('Server is up!');
 });
