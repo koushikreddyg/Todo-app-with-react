@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`not found page 1`] = `
+<div>
+  <Row
+    gutter={0}
+  >
+    <Col
+      offset={7}
+    >
+      <div
+        style={
+          Object {
+            "background": "#ECECEC",
+            "padding": "30px",
+            "textAlign": "left",
+            "width": 400,
+          }
+        }
+      >
+        <Card
+          bordered={true}
+          style={
+            Object {
+              "width": 330,
+            }
+          }
+          title="You are in wrong place"
+        >
+          <h1>
+            This is not found page
+          </h1>
+          <Button
+            ghost={false}
+            loading={false}
+            prefixCls="ant-btn"
+            type="primary"
+          >
+            <Link
+              replace={false}
+              to="/"
+            >
+              Go Home
+            </Link>
+          </Button>
+        </Card>
+      </div>
+    </Col>
+  </Row>
+</div>
+`;

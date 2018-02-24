@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Remove a task from the  1`] = `
+<div>
+  (
+  <Col
+    offset={7}
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <Search
+        enterButton={false}
+        inputPrefixCls="ant-input"
+        name="addInput"
+        onChange={[Function]}
+        placeholder="please enter the to do task"
+        prefixCls="ant-input-search"
+        style={
+          Object {
+            "width": 400,
+          }
+        }
+        value="Football"
+      />
+      <Button
+        ghost={false}
+        loading={false}
+        onClick={[Function]}
+        prefixCls="ant-btn"
+        type="primary"
+      >
+        Edit!
+      </Button>
+      <br />
+    </form>
+    <Button
+      ghost={false}
+      loading={false}
+      onClick={[Function]}
+      prefixCls="ant-btn"
+      span={20}
+      type="primary"
+    >
+      Remove Me!
+    </Button>
+  </Col>
+</div>
+`;
+
+exports[`this is test case for edit without any props  1`] = `
+<div>
+  (
+  <Col
+    offset={7}
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <Search
+        enterButton={false}
+        inputPrefixCls="ant-input"
+        name="addInput"
+        onChange={[Function]}
+        placeholder="please enter the to do task"
+        prefixCls="ant-input-search"
+        style={
+          Object {
+            "width": 400,
+          }
+        }
+        value="Cricket"
+      />
+      <Button
+        ghost={false}
+        loading={false}
+        onClick={[Function]}
+        prefixCls="ant-btn"
+        type="primary"
+      >
+        Edit!
+      </Button>
+      <br />
+    </form>
+    <Button
+      ghost={false}
+      loading={false}
+      onClick={[Function]}
+      prefixCls="ant-btn"
+      span={20}
+      type="primary"
+    >
+      Remove Me!
+    </Button>
+  </Col>
+</div>
+`;

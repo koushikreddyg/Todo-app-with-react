@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`this is test case for display tasks 1`] = `
+<div>
+  <div
+    key="24"
+  >
+    <h4>
+      <Checkbox
+        indeterminate={false}
+        onChange={[Function]}
+        prefixCls="ant-checkbox"
+      >
+        <Link
+          replace={false}
+          to="/edit/24"
+        >
+          Cricket
+           
+        </Link>
+      </Checkbox>
+    </h4>
+  </div>
+  <div
+    key="25"
+  >
+    <h4>
+      <Checkbox
+        indeterminate={false}
+        onChange={[Function]}
+        prefixCls="ant-checkbox"
+      >
+        <Link
+          replace={false}
+          to="/edit/25"
+        >
+          Football
+           
+        </Link>
+      </Checkbox>
+    </h4>
+  </div>
+  <div
+    key="26"
+  >
+    <h4>
+      <Checkbox
+        indeterminate={false}
+        onChange={[Function]}
+        prefixCls="ant-checkbox"
+      >
+        <Link
+          replace={false}
+          to="/edit/26"
+        >
+          Hockey
+           
+        </Link>
+      </Checkbox>
+    </h4>
+  </div>
+</div>
+`;

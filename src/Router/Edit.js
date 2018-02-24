@@ -10,13 +10,14 @@ import { connect } from 'react-redux'
 const Search = Input.Search;
 
 
-class Edit extends React.Component {
+export class Edit extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
-      editValue: Actions.validateId(this.props.Tasks,Number(this.props.match.params.id))===true
-      ?this.props.editTask.task:'',
-      id: Number(this.props.match.params.id),
+      editValue: Actions.validateId(this.props.Tasks,this.props.ID)===true?
+      this.props.editTask1.task:'' ,
+      id: this.props.ID,
       error:'',
     }
   }
@@ -30,7 +31,7 @@ class Edit extends React.Component {
   submitEditValue = (e) => {
     e.preventDefault();
     const editValue = this.state.editValue;
-    const id = this.state.id
+    const id = this.state.id;
     const Value=editValue.trim();
     let error=Actions.errorCheck(Value,this.props.Tasks)
     if(Value.length===0){
@@ -45,13 +46,18 @@ class Edit extends React.Component {
       this.setState(()=>({
         error:undefined
       }))
-      this.props.dispatch(editTask(id, { task: Value }));
+      this.props.editTask(id, { task: Value });
       this.setState(()=>({
         editValue:''
       }))
     this.props.history.push('/')
     }
     
+  }
+  Remove=(e)=>{
+    e.preventDefault();
+    this.props.removeTask(this.state.id);
+    this.props.history.push('/');
   }
   componentDidMount(){
     if(this.state.editValue===''){
@@ -62,31 +68,29 @@ class Edit extends React.Component {
   render() {
     return (
       <div>
-      
         (<Col offset={7}>
           <form onSubmit={this.submitEditValue}>
-
             <Search value={this.state.editValue}
               style={{ width: 400 }}
               placeholder='please enter the to do task' name='addInput'
               onChange={this.editValueChange} />
             <Button type='primary' onClick={this.submitEditValue}>Edit!</Button><br />
-            <Button type='primary' span={20} onClick={(e) => {
-              this.props.dispatch(removeTask(this.state.id))
-              this.props.history.push('/');
-
-            }}>Remove Me!</Button>
             {this.state.error&&<p>{this.state.error}</p>}
           </form>
-
+          <Button type='primary' span={20} onClick={this.Remove}>Remove Me!</Button>
         </Col>
       </div>
     );
   }
 }
+const mapDispatchToProps=(dispatch)=>({
+  removeTask:(id)=>dispatch(removeTask(id)),
+  editTask:(id,object)=>dispatch(editTask(id,object)),
+})
 const mapStateToProps = (state, props) => ({
 
-  editTask: state.Actions.find((item) => (item.id === Number(props.match.params.id))),
-  Tasks:state.Actions
+  editTask1: state.Actions.find((item) => (item.id === Number(props.match.params.id))),
+  ID:Number(props.match.params.id),
+  Tasks:state.Actions,
 })
-export default connect(mapStateToProps)(Edit);
+export default connect(mapStateToProps,mapDispatchToProps)(Edit);

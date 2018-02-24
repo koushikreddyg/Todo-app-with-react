@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test header from Router 1`] = `
+<div>
+  <Button
+    ghost={false}
+    icon="cloud-download"
+    loading={false}
+    offset={6}
+    prefixCls="ant-btn"
+    type="primary"
+  >
+    <NavLink
+      activeClassName="active"
+      ariaCurrent="true"
+      exact={true}
+      to="/"
+    >
+      Home
+    </NavLink>
+  </Button>
+</div>
+`;
