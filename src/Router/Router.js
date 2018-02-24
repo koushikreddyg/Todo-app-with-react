@@ -3,7 +3,7 @@ import Header from './Header';
 import Edit from './Edit';
 import NotFound from './NotFound';
 import Home from './Home';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
  const Router=()=>(
   <div>
   <BrowserRouter>

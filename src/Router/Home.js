@@ -1,80 +1,92 @@
 import React from 'react';
-import Form from '../components/Form';
-import Display from '../components/Display';
-import Edit from './Edit';
-import Extras from '../components/Extra';
-class Home extends React.Component {
+import DisplayTasks from '../components/DisplayTasks';
+import { connect } from 'react-redux';
+import { Row, Col } from 'antd';
+import 'antd/dist/antd.css';
+import { Input } from 'antd';
+import { Button } from 'antd';
+import { Card } from 'antd';
+import addTask from '../store/Actions/AddTask';
+import Actions from '../Library/Actions';
+const Search = Input.Search
 
+
+export class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: Extras.getAllData(),
-      error: undefined
+      task: '',
+      error: ''
     }
   }
+  inputChange = (e) => {
+    e.preventDefault();
+    const task = e.target.value;
+    this.setState(() => ({
+      task: task
+    }))
 
-  searchTaskDups = (value) => {
-    return this.state.options.find(obj => obj.task === value);
   }
-
-  Submit = (value) => {
-    const realvalue = value.trim();
-    if (realvalue.length == 0) {
-      this.setState((prevState) => ({
+  FormSubmit = (e) => {
+    e.preventDefault();
+    const id = Date.now();
+    const task = this.state.task.trim();
+    let error = Actions.errorCheck(task, this.props.Tasks)
+    if (task.length === 0) {
+      this.setState(() => ({
         error: 'please enter some value'
       }))
-    } else if (this.searchTaskDups(realvalue)) {
-      this.setState((prevState) => ({
-        error: 'option is present'
+    } else if (error.length > 0) {
+      this.setState(() => ({
+        error: 'this task is in your task list'
       }))
-    } else {
-      let taskObj = {
-        id: Date.now(),
-        task: realvalue
-      }
-  
-      this.setState((prevState) => ({
-        error: undefined,
-        options: [...prevState.options, Extras.addData(taskObj)]
+    }
+    else {
+      this.setState(() => ({
+        error: undefined
+      }))
+      this.props.addTask({ id: id, task: task });
+      this.setState(() => ({
+        task: ''
       }))
     }
 
   }
-  Remove = (id) => {
-    this.setState(() => ({
-      options:Extras.deleteData(id)
-    }))
-  }
-  // componentDidMount() {
-  //   try {
-  //     const json = localStorage.getItem('options');
-  //     const options = JSON.parse(json);
-  //     if (options) {
-  //       this.setState((prevState) => ({ options }));
-  //     }
-  //   }
-  //   catch (e) {
-
-  //   }
-  // }
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.options.length !== this.state.options.length) {
-  //     const json1 = JSON.stringify(this.state.options);
-  //     localStorage.setItem('options', json1);
-  //   }
-  // }
 
   render() {
-    console.log(this.props.input)
     return (
       <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <Form Submit={this.Submit} />
-        <Display options={this.state.options} Remove={this.Remove} />
+        <Row>
+          <form onSubmit={this.FormSubmit}>
+            <Col offset={7}><Search value={this.state.task} style={{ width: 325 }}
+              placeholder='please enter the to do task' name='addInput'
+              onChange={this.inputChange}
+            />
+              <Button type='primary' onClick={this.FormSubmit}>Submit</Button>
+            </Col>
+          </form>
+        </Row>
+        <Row>
+          <Col offset={7}>
+            <div style={{ background: '#ECECEC', padding: '30px', width: 400, textAlign: 'left' }}>
+              <Card title="Task List" bordered={true} style={{ width: 330 }}>
+                <DisplayTasks Tasks={this.props.Tasks} bordered={true} />
+              </Card>
+              {this.state.error && <p>{this.state.error}</p>}
+            </div>
+          </Col>
+        </Row>
       </div>
+
     )
   }
 }
+const mapStateToProps = (state) => ({
+  Tasks: state.Actions
+})
+const mapDispatchToProps = (dispatch) => ({
+  addTask:(object)=>dispatch(addTask(object))
+})
 
 
-export default Home;
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

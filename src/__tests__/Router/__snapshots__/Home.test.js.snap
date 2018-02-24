@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page with Submit button simulated 1`] = `
+<div>
+  <Row
+    gutter={0}
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <Col
+        offset={7}
+      >
+        <Search
+          enterButton={false}
+          inputPrefixCls="ant-input"
+          name="addInput"
+          onChange={[Function]}
+          placeholder="please enter the to do task"
+          prefixCls="ant-input-search"
+          style={
+            Object {
+              "width": 325,
+            }
+          }
+          value=""
+        />
+        <Button
+          ghost={false}
+          loading={false}
+          onClick={[Function]}
+          prefixCls="ant-btn"
+          type="primary"
+        >
+          Submit
+        </Button>
+      </Col>
+    </form>
+  </Row>
+  <Row
+    gutter={0}
+  >
+    <Col
+      offset={7}
+    >
+      <div
+        style={
+          Object {
+            "background": "#ECECEC",
+            "padding": "30px",
+            "textAlign": "left",
+            "width": 400,
+          }
+        }
+      >
+        <Card
+          bordered={true}
+          style={
+            Object {
+              "width": 330,
+            }
+          }
+          title="Task List"
+        >
+          <DisplayTasks
+            Tasks={
+              Array [
+                Object {
+                  "id": 24,
+                  "task": "Cricket",
+                },
+                Object {
+                  "id": 25,
+                  "task": "Football",
+                },
+                Object {
+                  "id": 26,
+                  "task": "Hockey",
+                },
+              ]
+            }
+            bordered={true}
+          />
+        </Card>
+      </div>
+    </Col>
+  </Row>
+</div>
+`;
+
+exports[`Home page with change of input 1`] = `
+<div>
+  <Row
+    gutter={0}
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <Col
+        offset={7}
+      >
+        <Search
+          enterButton={false}
+          inputPrefixCls="ant-input"
+          name="addInput"
+          onChange={[Function]}
+          placeholder="please enter the to do task"
+          prefixCls="ant-input-search"
+          style={
+            Object {
+              "width": 325,
+            }
+          }
+          value=""
+        />
+        <Button
+          ghost={false}
+          loading={false}
+          onClick={[Function]}
+          prefixCls="ant-btn"
+          type="primary"
+        >
+          Submit
+        </Button>
+      </Col>
+    </form>
+  </Row>
+  <Row
+    gutter={0}
+  >
+    <Col
+      offset={7}
+    >
+      <div
+        style={
+          Object {
+            "background": "#ECECEC",
+            "padding": "30px",
+            "textAlign": "left",
+            "width": 400,
+          }
+        }
+      >
+        <Card
+          bordered={true}
+          style={
+            Object {
+              "width": 330,
+            }
+          }
+          title="Task List"
+        >
+          <DisplayTasks
+            bordered={true}
+          />
+        </Card>
+      </div>
+    </Col>
+  </Row>
+</div>
+`;
