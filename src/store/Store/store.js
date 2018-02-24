@@ -1,10 +1,15 @@
 import {createStore,combineReducers} from 'redux';
 import taskActions from '../Reducer/taskActions';
-const store=(createStore(combineReducers({
-    Actions:taskActions,
-})))
-store.subscribe(()=>{
-    console.log('the store data is',store.getState());
-})
+export default()=>{
+    const store=(createStore(combineReducers({
+        Actions:taskActions,
+        
+    }),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()  
 
-export default store;
+)
+
+
+)
+return store
+}
