@@ -5,7 +5,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-    <h1>this is koushik App</h1>
       <Router/>
       </div>
     );
