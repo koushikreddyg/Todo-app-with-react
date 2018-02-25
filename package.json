@@ -24,10 +24,11 @@
   },
   "scripts": {
     "start": "node server/server",
+    "build:prod":"npm run-scripts -p --env production",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild":"npm run-script build"
+    "heroku-postbuild":"npm run-script build:prod"
   },
   "jest": {
     "snapshotSerializers": [
