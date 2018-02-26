@@ -19,6 +19,8 @@ const taskActions=(state=[],actions)=>{
                 return item
             }
         })
+        case 'SET_TASKS':
+        return state=actions.Tasks
          default: return state
     }
 }

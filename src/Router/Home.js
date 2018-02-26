@@ -1,12 +1,13 @@
 import React from 'react';
 import DisplayTasks from '../components/DisplayTasks';
+import Header from './Header';
 import { connect } from 'react-redux';
 import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 import { Input } from 'antd';
 import { Button } from 'antd';
 import { Card } from 'antd';
-import addTask from '../store/Actions/AddTask';
+import {addTaskFunction} from '../store/Actions/AddTask';
 import Actions from '../Library/Actions';
 const Search = Input.Search
 
@@ -31,31 +32,33 @@ export class Home extends React.Component {
     e.preventDefault();
     const id = Date.now();
     const task = this.state.task.trim();
-    let error = Actions.errorCheck(task, this.props.Tasks)
-    if (task.length === 0) {
-      this.setState(() => ({
-        error: 'please enter some value'
-      }))
-    } else if (error.length > 0) {
-      this.setState(() => ({
-        error: 'this task is in your task list'
-      }))
+     let error = Actions.errorCheck(task, this.props.Tasks)
+     if (task.length === 0) {
+       this.setState(() => ({
+         error: 'please enter some value'
+       }))
+     } else if (error.length > 0) {
+       this.setState(() => ({
+         error: 'this task is in your task list'
+       }))
     }
-    else {
+     else {
+       this.setState(() => ({
+         error: undefined
+       }))
+      this.props.addTaskFunction( task );
       this.setState(() => ({
-        error: undefined
-      }))
-      this.props.addTask({ id: id, task: task });
-      this.setState(() => ({
-        task: ''
-      }))
+         task: ''
+       }))
     }
 
   }
 
   render() {
+    //console.log('IN home page',this.props.uid)
     return (
       <div>
+      <Header/>
         <Row>
           <form onSubmit={this.FormSubmit}>
             <Col offset={7}><Search value={this.state.task} style={{ width: 325 }}
@@ -82,10 +85,11 @@ export class Home extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  Tasks: state.Actions
+  Tasks: state.Actions,
+  uid:state.Auth.uid
 })
 const mapDispatchToProps = (dispatch) => ({
-  addTask:(object)=>dispatch(addTask(object))
+  addTaskFunction:(object)=>dispatch(addTaskFunction(object))
 })
 
 

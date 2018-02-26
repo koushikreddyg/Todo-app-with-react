@@ -2,6 +2,7 @@
 
 exports[`Home page with Submit button simulated 1`] = `
 <div>
+  <Header />
   <Row
     gutter={0}
   >
@@ -90,6 +91,7 @@ exports[`Home page with Submit button simulated 1`] = `
 
 exports[`Home page with change of input 1`] = `
 <div>
+  <Header />
   <Row
     gutter={0}
   >

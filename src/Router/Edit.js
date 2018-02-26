@@ -1,17 +1,17 @@
 import React from 'react';
+import Header from './Header';
 import { Col } from 'antd';
 import 'antd/dist/antd.css';
 import { Input } from 'antd';
 import { Button } from 'antd';
 import Actions from '../Library/Actions';
-import editTask from '../store/Actions/editTask';
-import removeTask from '../store/Actions/RemoveTask';
+import {editTaskFunction} from '../store/Actions/editTask';
+import {removeTaskFunction} from '../store/Actions/RemoveTask';
 import { connect } from 'react-redux'
 const Search = Input.Search;
 
 
 export class Edit extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -46,28 +46,29 @@ export class Edit extends React.Component {
       this.setState(()=>({
         error:undefined
       }))
-      this.props.editTask(id, { task: Value });
+      this.props.editTaskFunction(id, {task:Value} );
       this.setState(()=>({
         editValue:''
       }))
-    this.props.history.push('/')
-    }
+    this.props.history.push('/dashboard')
+     }
     
   }
   Remove=(e)=>{
     e.preventDefault();
-    this.props.removeTask(this.state.id);
-    this.props.history.push('/');
+    this.props.removeTaskFunction(this.state.id);
+    this.props.history.push('/dashboard');
   }
   componentDidMount(){
     if(this.state.editValue===''){
-      this.props.history.push('/')
+      this.props.history.push('/dashboard')
     }
   }
 
   render() {
     return (
       <div>
+      <Header/>
         (<Col offset={7}>
           <form onSubmit={this.submitEditValue}>
             <Search value={this.state.editValue}
@@ -84,13 +85,13 @@ export class Edit extends React.Component {
   }
 }
 const mapDispatchToProps=(dispatch)=>({
-  removeTask:(id)=>dispatch(removeTask(id)),
-  editTask:(id,object)=>dispatch(editTask(id,object)),
+  removeTaskFunction:(id)=>dispatch(removeTaskFunction(id)),
+  editTaskFunction:(id,Value)=>dispatch(editTaskFunction(id,Value)),
 })
 const mapStateToProps = (state, props) => ({
 
-  editTask1: state.Actions.find((item) => (item.id === Number(props.match.params.id))),
-  ID:Number(props.match.params.id),
+  editTask1: state.Actions.find((item) => (item.id === props.match.params.id)),
+  ID:props.match.params.id,
   Tasks:state.Actions,
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Edit);

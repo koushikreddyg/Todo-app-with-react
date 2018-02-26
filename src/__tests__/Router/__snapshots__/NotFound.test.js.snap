@@ -38,7 +38,7 @@ exports[`not found page 1`] = `
           >
             <Link
               replace={false}
-              to="/"
+              to="/dashboard"
             >
               Go Home
             </Link>

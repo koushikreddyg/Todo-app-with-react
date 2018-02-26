@@ -2,12 +2,13 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
-
- const Header=()=>(
+import Logout from './Logout';
+ const Header=(props)=>(
   <div>
  <Button offset={6} type="primary" icon="cloud-download">
-  <NavLink to="/" exact={true}>Home</NavLink>
+  <NavLink to="/dashboard" exact={true}>Home</NavLink>
  </Button>
+ <Logout/>
   </div>
 )
 export default Header;

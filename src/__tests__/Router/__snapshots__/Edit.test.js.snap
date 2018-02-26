@@ -2,6 +2,7 @@
 
 exports[`Remove a task from the  1`] = `
 <div>
+  <Header />
   (
   <Col
     offset={7}
@@ -50,6 +51,7 @@ exports[`Remove a task from the  1`] = `
 
 exports[`this is test case for edit without any props  1`] = `
 <div>
+  <Header />
   (
   <Col
     offset={7}

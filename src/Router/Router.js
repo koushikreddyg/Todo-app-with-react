@@ -3,21 +3,25 @@ import Header from './Header';
 import Edit from './Edit';
 import NotFound from './NotFound';
 import Home from './Home';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
- const Router=()=>(
+import Login from './Login'
+import Logout from './Logout';
+import {Router, Switch, Route} from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+export const history=createHistory()
+ const AppRouter=()=>(
   <div>
-  <BrowserRouter>
+  <Router history={history}>
   <div>
-      <Header/>
         <Switch>
-          <Route path="/" component={Home} exact={true}/>
+          <Route path="/" component={Login} exact={true}/>
+          <Route path="/dashboard" component={Home} />
           <Route path="/edit/:id" component={Edit}/>
           <Route  component={NotFound}/>
         </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
       
   
   </div>
 )
-export default Router;
+export default AppRouter;
