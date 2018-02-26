@@ -13,6 +13,6 @@ const PublicRoute=({
   </div>  
 );
 const mapStateToProps=(state)=>({
-  isAuth:!!state.Auth
+  isAuth:!!state.Auth.uid
 })
 export default connect(mapStateToProps)(PublicRoute);
