@@ -26,20 +26,20 @@ exports[`should test router 1`] = `
   >
     <div>
       <Switch>
-        <Route
+        <Connect(PublicRoute)
           component={[Function]}
           exact={true}
           path="/"
         />
-        <Route
+        <Connect(PrivateRoute)
           component={[Function]}
           path="/dashboard"
         />
-        <Route
+        <Connect(PrivateRoute)
           component={[Function]}
           path="/edit/:id"
         />
-        <Route
+        <Connect(PrivateRoute)
           component={[Function]}
         />
       </Switch>

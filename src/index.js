@@ -11,6 +11,7 @@ import Router,{history} from './Router/Router';
 import setTasksFunction from './store/Actions/setTasks';
 import {setUID,removeUID} from './store/Actions/AuthActions'
 const store=configurestore();
+
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
       database.ref(`users/${user.uid}/Tasks`).once('value').then((snapshot)=>{

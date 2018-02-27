@@ -7,7 +7,7 @@ export  const addtask=(Task)=>({
 export const addTaskFunction=(object)=>{
     return(dispatch,getState)=>{
         const uid=getState().Auth.uid;
-        database.ref(`users/${uid}/Tasks`).push({task:object}).then((ref)=>{
+        return database.ref(`users/${uid}/Tasks`).push({task:object}).then((ref)=>{
             dispatch(addtask({
                 id:ref.key,
                 task:object
